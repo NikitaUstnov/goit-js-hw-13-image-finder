@@ -1,23 +1,34 @@
 import './styles.css';
 import cardTeplate from "./templates/card-template.hbs"
-import API from "./apiService"
+import ApiService from "./apiService"
 
-let currentPage = null
 
-const inputRef = document.querySelector("input")
+const searchForn = document.getElementById('search-form')
 const loadMoreBtnRef = document.getElementById('load-btn')
-const 
+const galleryRef = document.querySelector(".gallery")
 
+
+searchForn.addEventListener('submit', imageSearh)
 loadMoreBtnRef.addEventListener('click', nextPage)
-inputRef.addEventListener('input', imageSearh)
+
+
+const apiService = new ApiService()
 
 function imageSearh(evt) {
-    evt.preventDefault()
+    evt.preventDefault();
 
+    apiService.query = evt.currentTarget.elements.query.value;
+    
+    apiService.resetPage()
+    apiService.fetchArticles().then(appendHitsMarkup)
 }
 
-function nextPage(e) {
-    e.currentPage += 1 ;
+function nextPage() {
+    apiService.fetchArticles().then(appendHitsMarkup)
 }
 
-console.log(currentPage)
+function appendHitsMarkup(hits) {
+    galleryRef.insertAdjacentHTML("beforeend", cardTeplate(hits))
+    loadMoreBtnRef.classList.add("is-visible")
+}
+

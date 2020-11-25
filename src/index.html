@@ -9,15 +9,18 @@
   </head>
 <body>
 
-  <form class="search-form" id="search-form">
-    <input type="text" name="query" autocomplete="off" placeholder="Search images..." />
-  </form>
-
-  <ul class="gallery">
-    <!-- Список <li> с карточками изображений -->
-  </ul>
-
-  <button type="button" id="load-btn">Load more</button>
+<section class="container">
+    <form class="search-form" id="search-form">
+      <input class="input" id="input" type="text" name="query" autocomplete="off" placeholder="Search images..." />
+      <button class="search-button" id="search-btn" type="submit"> search</button>
+    </form>
+    
+    <ul class="gallery">
+      <!-- Список <li> с карточками изображений -->
+    </ul>
+    
+    <button class="load-more-btn" type="button" id="load-btn">Load more</button>
+</section>
   
 </body>
 </html>
