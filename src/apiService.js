@@ -15,7 +15,9 @@ export default class ApiService{
     .then(r => r.json())
    .then(data => {
      this.page += 1
-   return data.hits}
+     return data.hits
+   }
+     
    
  )
     
