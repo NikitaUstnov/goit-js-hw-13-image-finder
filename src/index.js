@@ -1,5 +1,5 @@
 import './styles.css';
-// import * as basicLightbox from 'basiclightbox'
+import * as basicLightbox from 'basiclightbox'
 import cardTeplate from "./templates/card-template.hbs"
 import ApiService from "./apiService"
 import fullSizeImgTpl from "./templates/fullscreen-img.hbs"
@@ -37,28 +37,27 @@ function appendHitsMarkup(hits) {
     loadMoreBtnRef.classList.add("is-visible")
 }
 
-function appendFullSigeImg(hits) {
-    modalEl.insertAdjacentHTML("beforeend", fullSizeImgTpl(hits))
+function appendFullSigeImg(largeImageURL) {
+ const content = document.querySelector(".lightbox__content")
+  content.insertAdjacentHTML("beforeend", fullSizeImgTpl({ largeImageURL }))
 }
 
 function openModal(evt) {
   evt.preventDefault()
-
-  modalEl.classList.add('is-open')
-
-  if (modalEl.classList.contains("is-open")) {
-        apiService.fetchArticles().then(appendFullSigeImg)
+  const { nodeName, src } = evt.target
+  console.log(nodeName)
+  
+  if (nodeName === 'IMG') {
+    modalEl.classList.add('is-open')
+    appendFullSigeImg(src)
   }
-    
-
 }
 
 function closeModal() {
-  modalEl.classList.remove('is-open')
   
-//   fullSizeImgEl.src = '';
-//       fullSizeImgEl.alt = '';
+  modalEl.classList.remove('is-open')
 }
+
 function onScrollTo() {
     let value = document.body.scrollHeight;
      setTimeout(() => {
@@ -69,3 +68,4 @@ function onScrollTo() {
       });
     }, 1000);
 }
+
