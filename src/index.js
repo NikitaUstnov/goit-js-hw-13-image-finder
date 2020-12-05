@@ -45,7 +45,7 @@ function appendFullSigeImg(largeImageURL) {
 function openModal(evt) {
   evt.preventDefault()
   const { nodeName, src } = evt.target
-  console.log(nodeName)
+  // console.log(nodeName)
   
   if (nodeName === 'IMG') {
     modalEl.classList.add('is-open')
@@ -56,6 +56,17 @@ function openModal(evt) {
 function closeModal() {
   
   modalEl.classList.remove('is-open')
+  
+  const img = document.querySelector('.lightbox__image')
+
+  img.removeAttribute("src")
+  img.removeAttribute("alt")
+
+  // if (modalEl.classList.contains('')) {
+  //   img.removeAttribute(src)
+  // }
+  console.log(img.hasAttribute("src"))
+  console.log(img)
 }
 
 function onScrollTo() {
