@@ -36,9 +36,9 @@ function appendHitsMarkup(hits) {
     galleryRef.insertAdjacentHTML("beforeend", cardTeplate(hits))
     loadMoreBtnRef.classList.add("is-visible")
 }
-
+const content = document.querySelector(".lightbox__content")
 function appendFullSigeImg(largeImageURL) {
- const content = document.querySelector(".lightbox__content")
+ 
   content.insertAdjacentHTML("beforeend", fullSizeImgTpl({ largeImageURL }))
 }
 
@@ -57,16 +57,18 @@ function closeModal() {
   
   modalEl.classList.remove('is-open')
   
-  const img = document.querySelector('.lightbox__image')
+  // const img = document.querySelector('.lightbox__image')
 
-  img.removeAttribute("src")
-  img.removeAttribute("alt")
+  content.insertAdjacentHTML()
 
-  // if (modalEl.classList.contains('')) {
-  //   img.removeAttribute(src)
-  // }
-  console.log(img.hasAttribute("src"))
-  console.log(img)
+  // img.removeAttribute("src")
+  // img.removeAttribute("alt")
+
+  // // if (modalEl.classList.contains('')) {
+  // //   img.removeAttribute(src)
+  // // }
+  // console.log(img.hasAttribute("src"))
+  // console.log(img)
 }
 
 function onScrollTo() {
